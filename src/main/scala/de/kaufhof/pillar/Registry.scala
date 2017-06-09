@@ -21,7 +21,7 @@ object Registry {
 
     val parser = Parser()
 
-    directory.listFiles().map {
+    directory.listFiles().toList.map {
       file =>
         val stream = new FileInputStream(file)
         try {
@@ -29,7 +29,7 @@ object Registry {
         } finally {
           stream.close()
         }
-    }.toList
+    }
   }
 }
 
