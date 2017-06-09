@@ -1,11 +1,11 @@
 package de.kaufhof.pillar
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 import java.util.Date
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 
-class MigrationSpec extends FunSpec with ShouldMatchers with MockitoSugar {
+class MigrationSpec extends FunSpec with Matchers with MockitoSugar {
   describe(".apply") {
     describe("without a down parameter") {
       it("returns an irreversible migration") {

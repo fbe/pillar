@@ -3,9 +3,9 @@ package de.kaufhof.pillar.cli
 import java.io.File
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
-class CommandLineConfigurationSpec extends FunSpec with ShouldMatchers {
+class CommandLineConfigurationSpec extends FunSpec with Matchers {
   val sep = File.separator
 
   describe(".buildFromArguments") {
