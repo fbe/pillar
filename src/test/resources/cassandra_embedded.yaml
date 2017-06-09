@@ -106,6 +106,9 @@ partitioner: org.apache.cassandra.dht.Murmur3Partitioner
 data_file_directories:
     - target/embeddedCassandra/data
 
+cdc_raw_directory:
+    - target/cassandra_cdc_raw
+
 # commit log
 commitlog_directory: target/embeddedCassandra/commitlog
 
