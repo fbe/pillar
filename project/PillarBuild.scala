@@ -65,7 +65,7 @@ object PillarBuild extends Build {
   ).settings(
     assemblyMergeStrategySetting,
     assemblyTestSetting,
-    libraryDependencies := dependencies,
+    libraryDependencies ++= dependencies,
     name := "pillar",
     organization := "de.kaufhof",
     version := "4.0.0",
