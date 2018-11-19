@@ -1,7 +1,8 @@
 package de.kaufhof.pillar
 
 import java.util.Date
-import com.datastax.driver.core.Session
+
+import com.datastax.driver.core.{ConsistencyLevel, Session}
 import com.datastax.driver.core.querybuilder.QueryBuilder
 
 object Migration {
@@ -42,20 +43,22 @@ trait Migration {
   def executeDownStatement(session: Session, appliedMigrationsTableName: String)
 
   protected def deleteFromAppliedMigrations(session: Session, appliedMigrationsTableName: String) {
-    session.execute(QueryBuilder.
-      delete().
-      from(appliedMigrationsTableName).
-      where(QueryBuilder.eq("authored_at", authoredAt)).
-      and(QueryBuilder.eq("description", description))
+    session.execute(QueryBuilder
+      .delete()
+      .from(appliedMigrationsTableName)
+      .where(QueryBuilder.eq("authored_at", authoredAt))
+      .and(QueryBuilder.eq("description", description))
+      .setConsistencyLevel(ConsistencyLevel.LOCAL_QUORUM)
     )
   }
 
   private def insertIntoAppliedMigrations(session: Session,appliedMigrationsTableName: String) {
-    session.execute(QueryBuilder.
-      insertInto(appliedMigrationsTableName).
-      value("authored_at", authoredAt).
-      value("description", description).
-      value("applied_at", System.currentTimeMillis())
+    session.execute(QueryBuilder
+      .insertInto(appliedMigrationsTableName)
+      .value("authored_at", authoredAt)
+      .value("description", description)
+      .value("applied_at", System.currentTimeMillis())
+      .setConsistencyLevel(ConsistencyLevel.LOCAL_QUORUM)
     )
   }
 }
